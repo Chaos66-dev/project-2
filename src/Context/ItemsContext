@@ -1,0 +1,8 @@
+import React from "react"
+
+const ItemsContext = React.createContext({
+  items: {},
+  setItems: () => {}
+})
+
+export default ItemsContext

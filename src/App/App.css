@@ -4,3 +4,23 @@
   padding: 2rem;
   text-align: center;
 }
+
+.card-container {
+  width: 300px;
+  background-color: green;
+}
+
+.itemCard-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px
+}
+
+/* .item-price {
+  font-weight: bold;
+} */
+
+.gallery-img {
+  scale: 200%;
+}
