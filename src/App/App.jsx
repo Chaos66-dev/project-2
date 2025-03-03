@@ -7,39 +7,54 @@ import Home from '../Home/Home'
 function App() {
   const [items, setItems] = useState([])
   const [itemDetails, setItemDetails] = useState([])
+  const [loading, setLoading] = useState(true)
   const value = {itemDetails, setItemDetails}
 
 
 
-  useEffect( () =>{
-    fetch('https://pokeapi.co/api/v2/item?limit=9&offset=0')
-    .then(res => res.json())
-    .then(data => setItems(data.results))
+  useEffect(() => {
+    const fetchData = async () => {
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=9&offset=0");
+      const data1 = await res1.json();
+
+      console.log("First API call data:", data1);
+
+      // Second API Call: Use data from the first call
+      const extraDataPromises = data1.results.map(async (item) => {
+        const res = await fetch(item.url);
+        const data2 = await res.json();
+        return data2; // Return the detailed data for this Pokémon
+      });
+
+      const allItemDetails = await Promise.all(extraDataPromises);
+      console.log("Second API call data:", allItemDetails);
+
+      // Set the results from both API calls
+      setItems(data1.results);
+      setItemDetails(allItemDetails);
+      setLoading(false); // Data has finished loading
+    }
+
+    fetchData()
   }, [])
 
-  useEffect( () =>{
-    let tempItemArray = []
-    items.map((details) =>{
-      // console.log(details)
-      fetch(details.url)
-      .then(res => res.json())
-      .then(data => tempItemArray.push(data))
-    })
-    
-    setItemDetails(tempItemArray)
 
-  }, [items])
-
-  
 
   return (
     <>
 
     <ItemsContext.Provider value={value}>
-      {console.log(value)}
-      <Home/>
+      {loading ? (
+        <div>loading</div>
+
+      ) : (
+        <div>
+          <Home/>
+        </div>
+
+      )}
     </ItemsContext.Provider>
-    
+
     </>
   )
 }

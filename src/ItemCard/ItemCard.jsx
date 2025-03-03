@@ -1,5 +1,6 @@
 function ItemCard ({prop}) {
-    
+    console.log("card" + prop)
+
     return (
         <div className='card-container'>
             <div>
@@ -15,7 +16,7 @@ function ItemCard ({prop}) {
                 ${prop.cost}
             </div>
 
-            
+
         </div>
     )
 }
