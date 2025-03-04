@@ -14,8 +14,7 @@ function ItemCard ({prop}) {
                         <img src={prop.sprites.default} className='gallery-img'/>
                     </div>
                     <div className='item-price-container'>
-                        <img src="../assets/pokeDollar.png" alt='poke dollars' className='poke-dollar-img'/>
-                        <h3 className='item-cost-text'>{prop.cost}</h3>
+                        <h3 className='item-cost-text'><span className="black">$</span>{prop.cost.toLocaleString()}</h3>
                     </div>
                 </div>
             </Link>

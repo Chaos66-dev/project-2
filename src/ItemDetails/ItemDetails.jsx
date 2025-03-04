@@ -23,8 +23,7 @@ function ItemDetails() {
                 <h1 className='description-text'>{separateHyphens(item.name)}</h1>
                 <h3>{item.flavor_text_entries[0].text}</h3>
                 <div className='item-price-wrapper'>
-                    <img src="../assets/pokeDollar.png" alt='poke dollars' className='poke-dollar-img'/>
-                    <h3 className='item-cost-text'>{item.cost}</h3>
+                    <h3 className='item-cost-text'>${item.cost}</h3>
                 </div>
                 {/* add to cart button */}
                 <Button
