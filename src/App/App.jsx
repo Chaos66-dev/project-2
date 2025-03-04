@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=50&offset=0");
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=2000&offset=0");
       const data1 = await res1.json();
 
       // Second API Call: Use data from the first call

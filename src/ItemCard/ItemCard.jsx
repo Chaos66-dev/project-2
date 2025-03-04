@@ -3,7 +3,7 @@ import { separateHyphens } from '../utils.js'
 import "./ItemCard.css"
 
 function ItemCard ({prop}) {
-    if(prop.cost > 0){
+    if(prop.cost > 0 && prop.sprites.default !== null){
         return (
             <Link to={`/details/${prop.id}`}>
                 <div className='card-container'>
