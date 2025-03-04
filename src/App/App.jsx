@@ -4,6 +4,7 @@ import './App.css'
 import ItemsContext from '../Context/ItemsContext'
 import Home from '../Home/Home'
 import ItemDetails from '../ItemDetails/ItemDetails'
+import {Routes, Route} from 'react-router-dom'
 
 function App() {
   const [items, setItems] = useState([])
@@ -46,11 +47,14 @@ function App() {
         <div>loading</div>
 
       ) : (
-        <div>
-          {/* <Home/> commented out to test itemDetails page */}
-          <ItemDetails />
-        </div>
+        <Routes>
 
+          <Route path='/' element= {<Home/>}/>
+          <Route path='/cart' element= {<Home/>}/>
+          <Route path='/details/:id' element= {<ItemDetails />}/>
+
+
+        </Routes>
       )}
     </ItemsContext.Provider>
 
