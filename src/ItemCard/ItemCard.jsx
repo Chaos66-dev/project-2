@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { separateHyphens } from '../utils.js'
 
 function ItemCard ({prop}) {
     console.log("card" + prop)
@@ -6,7 +7,7 @@ function ItemCard ({prop}) {
     return (
         <div className='card-container'>
             <div>
-                {prop.name}
+                {separateHyphens(prop.name)}
             </div>
 
             <div>

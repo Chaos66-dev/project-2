@@ -9,8 +9,12 @@ export function capitalizeFirst(text) {
 
 }
 
-export function seperateHypens(text) {
+export function separateHyphens(text) {
     if(text.includes('-')) {
         let tmp = text.indexOf('-')
+        return capitalizeFirst(text.substring(0, tmp)) + " " + capitalizeFirst(text.substring(tmp+1, text.legnth))
+    }
+    else {
+        capitalizeFirst(text)
     }
 }
