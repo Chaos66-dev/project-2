@@ -7,7 +7,10 @@
 
 .card-container {
   width: 175px;
-  background-color: green;
+  background-color: #91e0a7;
+  border-width: 5px;
+  border-color: #b8eed5;
+  border: 5px solid #b8eed5;
   height: 150px;
   display: flex;
   flex-direction: column;
@@ -17,7 +20,7 @@
 
 .card-container:hover{
   transform: translateY(-2px);
-  filter: drop-shadow(0 0 7px #ffffff);
+  box-shadow: 0px 4px 10px #84c8e2;
 }
 
 .itemCard-wrapper {
