@@ -4,11 +4,19 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     justify-content: center;
+    align-items: center;
+    /* background-color: red; */
 }
 
 .img-container {
-    width: 100px;
+    width: 400px;
     height: auto;
+    /* background: blue; */
+}
+
+.img {
+    width: 400px;
+    image-rendering: pixelated;
 }
 
 .text-wrapper {
@@ -17,4 +25,9 @@
     margin-left: 5%;
     align-items: flex-start;
     padding-bottom: 3%;
+    /* background-color: green; */
+}
+
+.description-text {
+
 }

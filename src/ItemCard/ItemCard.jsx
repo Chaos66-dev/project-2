@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { separateHyphens } from '../utils.js'
 
 function ItemCard ({prop}) {
     if(prop.cost > 0){
@@ -6,7 +7,7 @@ function ItemCard ({prop}) {
             <Link to={`/details/${prop.id}`}>
                 <div className='card-container'>
                     <div>
-                        {prop.name}
+                    {separateHyphens(prop.name)}
                     </div>
                     <div>
                         <img src={prop.sprites.default} className='gallery-img'/>
