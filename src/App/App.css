@@ -6,7 +6,11 @@
 }
 
 .card-container {
-  width: 300px;
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background-color: green;
 }
 
@@ -17,6 +21,17 @@
   gap: 10px;
 }
 
+.item-price-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.poke-dollar-img {
+  height: 15px;
+}
+
 .item-price {
   font-weight: bold;
 }
@@ -24,4 +39,9 @@
 .gallery-img {
   scale: 200%;
   image-rendering: pixelated;
+}
+
+.cart-button {
+  display: "flex";
+  align-items: "center"
 }
