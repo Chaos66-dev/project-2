@@ -15,7 +15,7 @@ export function separateHyphens(text) {
         return capitalizeFirst(text.substring(0, tmp)) + " " + capitalizeFirst(text.substring(tmp+1, text.legnth))
     }
     else {
-        capitalizeFirst(text)
+        return capitalizeFirst(text)
     }
 }
 
