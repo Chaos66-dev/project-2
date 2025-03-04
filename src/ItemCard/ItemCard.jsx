@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ItemCard ({prop}) {
     console.log("card" + prop)
 
@@ -8,8 +10,7 @@ function ItemCard ({prop}) {
             </div>
 
             <div>
-                <img src={prop.sprites.default} className='gallery-img'/>
-                {/* <img src={prop.sprites.default}/> */}
+                <Link to={`/details/${prop.id}`}><img src={prop.sprites.default} className='gallery-img'/></Link>
             </div>
 
             <div>

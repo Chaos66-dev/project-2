@@ -23,4 +23,5 @@
 
 .gallery-img {
   scale: 200%;
+  image-rendering: pixelated;
 }

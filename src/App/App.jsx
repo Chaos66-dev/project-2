@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import ItemsContext from '../Context/ItemsContext'
 import Home from '../Home/Home'
+import {Routes, Route} from 'react-router-dom'
 
 function App() {
   const [items, setItems] = useState([])
@@ -14,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=9&offset=0");
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=50&offset=0");
       const data1 = await res1.json();
 
       console.log("First API call data:", data1);
@@ -48,10 +49,14 @@ function App() {
         <div>loading</div>
 
       ) : (
-        <div>
-          <Home/>
-        </div>
+        <Routes>
 
+          <Route path='/' element= {<Home/>}/>
+          <Route path='/cart' element= {<Home/>}/>
+          <Route path='/details/:id' element= {<Home/>}/>
+
+
+        </Routes>
       )}
     </ItemsContext.Provider>
 
