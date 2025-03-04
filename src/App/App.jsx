@@ -15,21 +15,19 @@ function App() {
   const [loading, setLoading] = useState(true)
   const value = {itemDetails, setItemDetails}
   let navigate = useNavigate();
-   // const [inputText, setInputText] = useState("")
+  const [inputText, setInputText] = useState("")
 
-  // let inputHandler = (input) => {
+  let inputHandler = (input) => {
+    //convert input text to lower case
+    var lowerCase = input.target.value.toLowerCase();
+    var query = lowerCase.replace(" ", "-")
+    setInputText(query);
+  };
 
-  //   //convert input text to lower case
-
-  //   var lowerCase = input.target.value.toLowerCase();
-
-  //   setInputText(lowerCase);
-
-  // };
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=2000&offset=0");
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=500&offset=0");
       const data1 = await res1.json();
 
       // Second API Call: Use data from the first call
@@ -61,11 +59,21 @@ function App() {
 
         <TextField
           id="search"
-          color='primary'
-          margin="normal"
-          // onChange={inputHandler}
+          onChange={inputHandler}
           variant="outlined"
-          label="Search"
+          placeholder="Search..."
+          sx={{
+            backgroundColor: "white",
+            borderRadius: 1,
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "gray",
+              },
+              "&:hover fieldset": {
+                borderColor: "black",
+              },
+            }
+          }}
 
         />
     </div>
@@ -75,15 +83,16 @@ function App() {
         <div>loading</div>
 
       ) : (
-        <Routes>
+          <Routes>
 
-          <Route path='/' element= {<Home/>}/>
-          <Route path='/cart' element= {<Home/>}/>
-          <Route path='/details/:id' element= {<ItemDetails />}/>
+            <Route path='/' element= {<Home inputText={inputText}/>}/>
+            <Route path='/cart' element= {<Home/>}/>
+            <Route path='/details/:id' element= {<ItemDetails />}/>
 
 
-        </Routes>
-      )}
+          </Routes>
+        )
+      }
     </ItemsContext.Provider>
 
     </>

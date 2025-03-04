@@ -4,7 +4,7 @@
   border-width: 5px;
   border-color: #b8eed5;
   border: 5px solid #b8eed5;
-  height: 150px;
+  height: 190px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -34,7 +34,7 @@
 
 /* Cost Wrapper (Aligns PokeDollar Image & Cost) */
 .card-container .item-price-container {
-  height: 25px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,4 +57,8 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffcc00;
+}
+
+.black {
+  color: #000000;
 }
