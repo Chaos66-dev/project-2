@@ -1,0 +1,60 @@
+.card-container {
+  width: 175px;
+  background-color: #91e0a7;
+  border-width: 5px;
+  border-color: #b8eed5;
+  border: 5px solid #b8eed5;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover{
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 10px #84c8e2;
+}
+
+/* Name Styling */
+.card-container .item-title{
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Pokémon Item Image */
+.gallery-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin: 10px 0;
+}
+
+/* Cost Wrapper (Aligns PokeDollar Image & Cost) */
+.card-container .item-price-container {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  margin-top: 1px;
+  background: rgba(0, 0, 255, 0.2);
+  padding: 1px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 255, 255, 0.3);
+}
+
+/* PokéDollar Icon */
+.poke-dollar-img {
+  width: 15px;
+  height: 15px;
+}
+
+/* Price Text */
+.item-cost-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffcc00;
+}

@@ -5,24 +5,6 @@
   text-align: center;
 }
 
-.card-container {
-  width: 175px;
-  background-color: #91e0a7;
-  border-width: 5px;
-  border-color: #b8eed5;
-  border: 5px solid #b8eed5;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  transition: transform 0.3s ease;
-}
-
-.card-container:hover{
-  transform: translateY(-2px);
-  box-shadow: 0px 4px 10px #84c8e2;
-}
-
 .itemCard-wrapper {
   display: flex;
   flex-direction: row;
