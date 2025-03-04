@@ -18,3 +18,12 @@ export function separateHyphens(text) {
         capitalizeFirst(text)
     }
 }
+
+export function getEnglishFlavorText(flavor_text_array) {
+    for(let text of flavor_text_array){
+        if(text.language.name == 'en') {
+            return text.text
+        }
+    }
+    return 'No english flavor text'
+}
