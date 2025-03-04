@@ -4,7 +4,6 @@ import ItemCard from '../ItemCard/ItemCard'
 
 export default function Home(){
     const {itemDetails, setItemDetails} = useContext(ItemsContext)
-    console.log("home" + itemDetails)
 
     return(
         <div className='itemCard-wrapper'>

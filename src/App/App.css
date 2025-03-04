@@ -6,8 +6,18 @@
 }
 
 .card-container {
-  width: 300px;
+  width: 175px;
   background-color: green;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover{
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 7px #ffffff);
 }
 
 .itemCard-wrapper {
@@ -24,4 +34,9 @@
 .gallery-img {
   scale: 200%;
   image-rendering: pixelated;
+}
+
+:any-link {
+  color: black;
+  text-decoration: none;
 }
