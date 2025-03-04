@@ -59,9 +59,12 @@
   align-items: "center"
 }
 
-#home-button{
+.home-search{
   display: flex;
   text-align: left;
+  flex-direction: row;
 }
 
-
+#search{
+  width: 314px;
+}

@@ -7,7 +7,7 @@ import ItemDetails from '../ItemDetails/ItemDetails'
 import {Routes, Route} from 'react-router-dom'
 import { useNavigate } from "react-router";
 import HomeIcon from '@mui/icons-material/Home';
-import { Button, IconButton } from "@mui/material";
+import { Button, IconButton, TextField} from "@mui/material";
 
 function App() {
   const [items, setItems] = useState([])
@@ -15,7 +15,17 @@ function App() {
   const [loading, setLoading] = useState(true)
   const value = {itemDetails, setItemDetails}
   let navigate = useNavigate();
+   // const [inputText, setInputText] = useState("")
 
+  // let inputHandler = (input) => {
+
+  //   //convert input text to lower case
+
+  //   var lowerCase = input.target.value.toLowerCase();
+
+  //   setInputText(lowerCase);
+
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,11 +54,19 @@ function App() {
 
   return (
     <>
+      <div className='home-search'>
+        <IconButton id='home-button'  aria-label="home" onClick={()=>navigate('/')}>
+          <HomeIcon color="primary"/>
+        </IconButton>
 
-      <IconButton id='home-button'  aria-label="home" onClick={()=>navigate('/')}>
-        <HomeIcon color="primary"/>
-      </IconButton>
+        <TextField
+          id="search"
+          // onChange={inputHandler}
+          variant="outlined"
+          label="Search"
 
+        />
+    </div>
 
     <ItemsContext.Provider value={value}>
       {loading ? (
