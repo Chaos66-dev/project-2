@@ -61,6 +61,8 @@ function App() {
 
         <TextField
           id="search"
+          color='primary'
+          margin="normal"
           // onChange={inputHandler}
           variant="outlined"
           label="Search"
