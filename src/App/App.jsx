@@ -5,6 +5,7 @@ import ItemsContext from '../Context/ItemsContext'
 import Home from '../Home/Home'
 import ItemDetails from '../ItemDetails/ItemDetails'
 import {Routes, Route} from 'react-router-dom'
+import Search from "../Search/Search";
 
 function App() {
   const [items, setItems] = useState([])
@@ -47,14 +48,17 @@ function App() {
         <div>loading</div>
 
       ) : (
-        <Routes>
+        <>
+          <Search />
+          <Routes>
 
-          <Route path='/' element= {<Home/>}/>
-          <Route path='/cart' element= {<Home/>}/>
-          <Route path='/details/:id' element= {<ItemDetails />}/>
+            <Route path='/' element= {<Home/>}/>
+            <Route path='/cart' element= {<Home/>}/>
+            <Route path='/details/:id' element= {<ItemDetails />}/>
 
 
-        </Routes>
+          </Routes>
+        </>
       )}
     </ItemsContext.Provider>
 
