@@ -55,3 +55,14 @@
   display: "flex";
   align-items: "center"
 }
+
+#home-button{
+  transition: transform 0.3s ease;
+  display: flex;
+  text-align: left;
+}
+
+.home-button:hover{
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 7px #ffffff);
+}
