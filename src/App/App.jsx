@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import ItemsContext from '../Context/ItemsContext'
 import Home from '../Home/Home'
+import ItemDetails from '../ItemDetails/ItemDetails'
 
 function App() {
   const [items, setItems] = useState([])
@@ -14,10 +15,8 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=9&offset=0");
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=20&offset=0");
       const data1 = await res1.json();
-
-      console.log("First API call data:", data1);
 
       // Second API Call: Use data from the first call
       const extraDataPromises = data1.results.map(async (item) => {
@@ -27,7 +26,6 @@ function App() {
       });
 
       const allItemDetails = await Promise.all(extraDataPromises);
-      console.log("Second API call data:", allItemDetails);
 
       // Set the results from both API calls
       setItems(data1.results);
@@ -49,7 +47,8 @@ function App() {
 
       ) : (
         <div>
-          <Home/>
+          {/* <Home/> commented out to test itemDetails page */}
+          <ItemDetails />
         </div>
 
       )}

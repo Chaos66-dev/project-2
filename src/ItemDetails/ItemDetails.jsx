@@ -2,12 +2,14 @@ import { useContext } from 'react';
 import { useParams } from 'react-router-dom'
 import ItemsContext from '../Context/ItemsContext'
 import './ItemDetails.css'
+import { capitalizeFirst } from '../utils.js'
 
 
 function ItemDetails() {
-    const { items } = useContext(ItemsContext)
-    const { id } = useParams()
-    const item = items[id-1]
+    const { itemDetails } = useContext(ItemsContext)
+    let { id } = useParams() // change to const once useParams in implemented
+    id = 1 // hard coded value to dev before use Params is working
+    const item = itemDetails[id-1]
 
     return (
         <div className='itemDetails-container'>
@@ -17,7 +19,7 @@ function ItemDetails() {
             </div>
             <div className='text-wrapper'>
                 {/* Name/description text on right */}
-                <div className='description-text'>Description Text</div>
+                <h1 className='description-text'>{capitalizeFirst(item.name)}</h1>
                 {/* add to cart button */}
                 <div className='cart-button'>Cart Button</div>
 
