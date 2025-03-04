@@ -15,7 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const value = {itemDetails, setItemDetails}
   let navigate = useNavigate();
-  const [inputText, setInputText] = useState("ball")
+  const [inputText, setInputText] = useState("")
 
   let inputHandler = (input) => {
     //convert input text to lower case
