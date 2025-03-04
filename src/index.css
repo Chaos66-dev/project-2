@@ -1,21 +1,23 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@font-face {
+  font-family: 'PokemonClassic';
+  src: url('src/Fonts/pokemon-classic.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('src/Fonts/pokemon-classic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
 
+:root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
 }
 
 /* Global Styling for a Digital PokéMart Theme */
 body {
-  font-family: 'Press Start 2P', cursive; /* Classic Pokémon feel */
+  font-family: 'Pokemon Classic', PokemonClassic; /* Classic Pokémon feel */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  font-smooth: never;
   background: linear-gradient(to right, #021b79, #0575E6); /* Digital PokéMart colors */
   color: white;
   text-align: center;
