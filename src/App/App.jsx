@@ -84,7 +84,7 @@ function App() {
               <ShoppingCartIcon color="primary" />
           </Badge>
         </IconButton>
-    </div>
+      </div>
 
 
     <ItemsContext.Provider value={value}>
