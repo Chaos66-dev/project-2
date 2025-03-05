@@ -34,7 +34,7 @@ describe("App", () => {
         // Act
         //   No Act steps needed
         // Assert
-        expect(screen.getByText("PokeCommerce")).toBeInTheDocument();
+        expect(screen.getByText("PokéMart™ Online!")).toBeInTheDocument();
       });
 
       // unit test
@@ -151,6 +151,19 @@ describe("App", () => {
         fireEvent.click(addToCart)
 
         expect(screen.getByText("1")).toBeInTheDocument();
+      })
+
+      test("English Flavor Text is rendered to screen", async () => {
+        render(
+          <CartProvider>
+            <Router initialEntries={['/details/8']}>
+              <App />
+            </Router>
+          </CartProvider>
+        );
+        const nestBallFlavor = await screen.findByText("A BALL that works better on weaker POKéMON.")
+        expect(nestBallFlavor).toBeInTheDocument();
+
       })
     })
 
