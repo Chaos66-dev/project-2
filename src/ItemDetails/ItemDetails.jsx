@@ -36,6 +36,7 @@ function ItemDetails() {
                 {/* Name/description text on right */}
                 <h1 className='description-text'>{separateHyphens(item.name)}</h1>
                 <h3>{getEnglishFlavorText(item.flavor_text_entries)}</h3>
+
                 <div className='item-price-wrapper'>
                     <h3 className='item-cost-text'>${item.cost}</h3>
                 </div>
