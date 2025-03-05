@@ -4,8 +4,8 @@ import './App.css'
 import ItemsContext from '../Context/ItemsContext'
 import Home from '../Home/Home'
 import ItemDetails from '../ItemDetails/ItemDetails'
-import {Routes, Route} from 'react-router-dom'
-import { useNavigate } from "react-router";
+import {Routes, Route, useNavigate} from 'react-router-dom'
+// import { useNavigate } from "react-router";
 import HomeIcon from '@mui/icons-material/Home';
 import { Button, IconButton, TextField} from "@mui/material";
 
@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=500&offset=0");
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=100&offset=0");
       const data1 = await res1.json();
 
       // Second API Call: Use data from the first call
@@ -50,6 +50,7 @@ function App() {
 
   return (
     <>
+    <div className='header'>
       <div className='home-search'>
         <IconButton id='home-button'  aria-label="home" onClick={()=>navigate('/')}>
           <HomeIcon color="primary"/>
@@ -74,6 +75,9 @@ function App() {
           }}
 
         />
+      </div>
+
+      <h1 className='name'>PokeCommerce</h1>
     </div>
 
     <ItemsContext.Provider value={value}>
