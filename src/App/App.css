@@ -1,25 +1,16 @@
 #root {
-  margin: 0;
+  margin: auto;
   padding: 2rem;
   text-align: center;
+  max-width: 1280px;
 }
 
 .itemCard-wrapper {
+  justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.item-price-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-
-.poke-dollar-img {
-  height: 15px;
 }
 
 .item-price {
@@ -36,8 +27,8 @@
   text-decoration: none;
 }
 .cart-button {
-  display: "flex";
-  align-items: "center"
+  display: flex;
+  align-items: center
 }
 
 .home-search{
@@ -55,7 +46,8 @@
 }
 
 .header {
-  display: grid;
+  display: flex;
+  justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
 }
