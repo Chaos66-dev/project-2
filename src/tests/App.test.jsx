@@ -3,24 +3,30 @@ import { describe, beforeEach, test, expect } from 'vitest'
 import { render, screen } from "@testing-library/react";
 import App from "../App/App.jsx";
 import { BrowserRouter as Router } from 'react-router-dom';
-
-
+import { CartProvider } from '../Cart/CartContext';
 
 describe("App", () => {
     beforeEach(() => {
       // Arrange
       render(
-        <Router>
-          <App />
-        </Router>
+        <CartProvider>
+          <Router>
+            <App />
+          </Router>
+        </CartProvider>
       );
     });
 
     describe("Test rendering of individual components", () => {
-      test("Renders ItemCards (assuming first one is ultra-ball", async () => {
+      test("Renders ItemCards (assuming first one is ultra-ball)", async () => {
         const ultraBall = await screen.findByText("Ultra Ball", {}, { timeout: 3000 });
+        const potion = await screen.findByText("Potion", {}, { timeout: 3000 });
+        const rare_candy = await screen.findByText("Rare Candy", {}, { timeout: 3000 });
         expect(ultraBall).toBeInTheDocument();
+        expect(potion).toBeInTheDocument();
+        expect(rare_candy).toBeInTheDocument();
       })
+
       test("Renders the name", () => {
         // Act
         //   No Act steps needed
@@ -47,9 +53,13 @@ describe("App", () => {
       });
 
       test("Renders our shopping cart button", () => {
-        const cart = document.getElementById('cart')
+        const cart = document.getElementById('cart-button')
         expect(cart).toBeInTheDocument();
       })
+
+    })
+
+    describe("Clicking buttons reroutes/does something", () => {
 
     })
   });

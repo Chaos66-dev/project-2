@@ -25,12 +25,13 @@ function App() {
     var lowerCase = input.target.value.toLowerCase();
     var query = lowerCase.replace(" ", "-")
     setInputText(query);
+    navigate('/')
   };
 
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=100&offset=0");
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=1000&offset=0");
       const data1 = await res1.json();
 
       // Second API Call: Use data from the first call
@@ -56,13 +57,17 @@ function App() {
     <>
     <div className='header'>
       <div className='home-search'>
-        <IconButton id='home-button'  aria-label="home" onClick={()=>navigate('/')}>
+        <IconButton id='home-button'  aria-label="home" onClick={()=>{
+          navigate('/')
+          setInputText('')
+          }}>
           <HomeIcon color="primary"/>
         </IconButton>
 
         <TextField
           id="search"
           onChange={inputHandler}
+          value={inputText}
           variant="outlined"
           placeholder="Search..."
           sx={{
@@ -84,6 +89,8 @@ function App() {
           </Badge>
         </IconButton>
       </div>
+      <h1 className="header-text">PokeCommerce</h1>
+      {window.scrollTo(0, 0)}
     </div>
 
 

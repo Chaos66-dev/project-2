@@ -17,8 +17,22 @@ export const CartProvider = ({ children }) => {
     }, [cart]);
 
     const addToCart = (item) => {
-        setCart((prevCart) => [...prevCart, item]);
+        setCart((prevCart) => {
+            const updatedCart = [...prevCart];
+            const existingItemIndex = updatedCart.findIndex(cartItem => cartItem.id === item.id);
+
+            if (existingItemIndex !== -1) {
+                // If the item exists, increase the quantity
+                updatedCart[existingItemIndex].quantity += 1;
+            } else {
+                // Otherwise, add the item with quantity = 1
+                updatedCart.push({ ...item, quantity: 1 });
+            }
+
+            return updatedCart;
+        });
     };
+
 
     const removeFromCart = (id) => {
         setCart((prevCart) => {
@@ -32,8 +46,18 @@ export const CartProvider = ({ children }) => {
         });
     };
 
+    const updateQuantity = (id, newQuantity) => {
+        setCart((prevCart) => {
+            const updatedCart = prevCart.map(item =>
+                item.id === id ? { ...item, quantity: newQuantity } : item
+            );
+            return updatedCart;
+        });
+    };
+
+
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
             {children}
         </CartContext.Provider>
     );
