@@ -1,23 +1,37 @@
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom'
-import ItemsContext from '../Context/ItemsContext'
-import './ItemDetails.css'
-import { separateHyphens, getEnglishFlavorText } from '../utils.js'
+import { useParams } from 'react-router-dom';
+import ItemsContext from '../Context/ItemsContext';
+import CartContext from '../Cart/CartContext.jsx'; // Import Cart Context
+import './ItemDetails.css';
+import { separateHyphens, getEnglishFlavorText } from '../utils.js';
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-
 function ItemDetails() {
-    const { itemDetails } = useContext(ItemsContext)
-    let { id } = useParams()
-    const item = itemDetails[id-1]
+    const { itemDetails } = useContext(ItemsContext);
+    const { addToCart } = useContext(CartContext); // Get addToCart function
+
+    let { id } = useParams();
+    const item = itemDetails[id - 1]; // Adjust for 0-based index
+
+    // Function to handle adding an item to the cart
+    const handleAddToCart = () => {
+        const cartItem = {
+            id: item.id,
+            name: separateHyphens(item.name),
+            price: item.cost,
+            image: item.sprites.default,
+        };
+        addToCart(cartItem);
+    };
 
     return (
         <div className='itemDetails-container'>
-            {/* image on left */}
+            {/* Image on left */}
             <div className='img-container'>
-                <img src={item.sprites.default} alt='item' className='img'></img>
+                <img src={item.sprites.default} alt={item.name} className='img' />
             </div>
+
             <div className='text-wrapper'>
                 {/* Name/description text on right */}
                 <h1 className='description-text'>{separateHyphens(item.name)}</h1>
@@ -25,18 +39,19 @@ function ItemDetails() {
                 <div className='item-price-wrapper'>
                     <h3 className='item-cost-text'>${item.cost}</h3>
                 </div>
-                {/* add to cart button */}
+
+                {/* Add to Cart Button */}
                 <Button
                     variant="outlined"
                     color="primary"
                     startIcon={<ShoppingCartIcon />}
-                    >
-                    Cart
+                    onClick={handleAddToCart} // Add click handler
+                >
+                    Add To Cart
                 </Button>
-
             </div>
         </div>
-    )
+    );
 }
 
-export default ItemDetails
+export default ItemDetails;

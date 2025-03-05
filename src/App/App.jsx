@@ -1,15 +1,19 @@
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import ItemsContext from '../Context/ItemsContext'
+import CartContext from "../Cart/CartContext";
 import Home from '../Home/Home'
+import Cart from '../Cart/Cart'
 import ItemDetails from '../ItemDetails/ItemDetails'
 import {Routes, Route, useNavigate} from 'react-router-dom'
 // import { useNavigate } from "react-router";
 import HomeIcon from '@mui/icons-material/Home';
-import { Button, IconButton, TextField} from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Button, IconButton, TextField, Badge} from "@mui/material";
 
 function App() {
+  const { cart } = useContext(CartContext);
   const [itemDetails, setItemDetails] = useState([])
   const [loading, setLoading] = useState(true)
   const value = {itemDetails, setItemDetails}
@@ -73,12 +77,15 @@ function App() {
               },
             }
           }}
-
         />
+        <IconButton id='cart-button' aria-label="cart" onClick={() => navigate('/cart')}>
+          <Badge badgeContent={cart.length} color="secondary">
+              <ShoppingCartIcon color="primary" />
+          </Badge>
+        </IconButton>
       </div>
-
-      <h1 className='name'>PokeCommerce</h1>
     </div>
+
 
     <ItemsContext.Provider value={value}>
       {loading ? (
@@ -88,7 +95,7 @@ function App() {
           <Routes>
 
             <Route path='/' element= {<Home inputText={inputText}/>}/>
-            <Route path='/cart' element= {<Home/>}/>
+            <Route path='/cart' element= {<Cart/>}/>
             <Route path='/details/:id' element= {<ItemDetails />}/>
 
 
@@ -96,6 +103,7 @@ function App() {
         )
       }
     </ItemsContext.Provider>
+
 
     </>
   )
