@@ -76,3 +76,25 @@
 .cart-item-remove:hover {
   background-color: darkred;
 }
+
+.cart-item-image {
+  width: 60px;
+  border-radius: 5px;
+  cursor: pointer; /* Show pointer cursor to indicate clickability */
+  transition: transform 0.2s ease-in-out;
+}
+
+.cart-item-image:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.cart-item-name {
+  flex: 1;
+  text-align: left;
+  cursor: pointer; /* Clickable text */
+  transition: color 0.2s ease-in-out;
+}
+
+.cart-item-name:hover {
+  color: #007BFF; /* Change color on hover */
+}
