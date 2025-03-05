@@ -1,8 +1,8 @@
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import ItemsContext from '../Context/ItemsContext'
-import { CartProvider } from '../Cart/CartContext.jsx';
+import CartContext from "../Cart/CartContext";
 import Home from '../Home/Home'
 import Cart from '../Cart/Cart'
 import ItemDetails from '../ItemDetails/ItemDetails'
@@ -10,9 +10,10 @@ import {Routes, Route} from 'react-router-dom'
 import { useNavigate } from "react-router";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Button, IconButton, TextField} from "@mui/material";
+import { Button, IconButton, TextField, Badge} from "@mui/material";
 
 function App() {
+  const { cart } = useContext(CartContext);
   const [items, setItems] = useState([])
   const [itemDetails, setItemDetails] = useState([])
   const [loading, setLoading] = useState(true)
@@ -79,11 +80,13 @@ function App() {
           }}
         />
         <IconButton id='cart-button' aria-label="cart" onClick={() => navigate('/cart')}>
-            <ShoppingCartIcon color="primary" />
+          <Badge badgeContent={cart.length} color="secondary">
+              <ShoppingCartIcon color="primary" />
+          </Badge>
         </IconButton>
     </div>
 
-    <CartProvider>
+
     <ItemsContext.Provider value={value}>
       {loading ? (
         <div>loading</div>
@@ -100,7 +103,7 @@ function App() {
         )
       }
     </ItemsContext.Provider>
-    </CartProvider>
+
 
     </>
   )
