@@ -7,7 +7,6 @@ import Home from '../Home/Home'
 import Cart from '../Cart/Cart'
 import ItemDetails from '../ItemDetails/ItemDetails'
 import {Routes, Route, useNavigate} from 'react-router-dom'
-// import { useNavigate } from "react-router";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button, IconButton, TextField, Badge} from "@mui/material";
@@ -31,7 +30,8 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=1000&offset=0");
+      // change limit when not testing
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=50&offset=0");
       const data1 = await res1.json();
 
       // Second API Call: Use data from the first call
