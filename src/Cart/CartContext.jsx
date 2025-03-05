@@ -21,7 +21,15 @@ export const CartProvider = ({ children }) => {
     };
 
     const removeFromCart = (id) => {
-        setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+        setCart((prevCart) => {
+            const updatedCart = [...prevCart];
+            const indexToRemove = updatedCart.findIndex(item => item.id === id);
+            if (indexToRemove !== -1) {
+                updatedCart.splice(indexToRemove, 1);
+            }
+
+            return updatedCart; // Update the cart state
+        });
     };
 
     return (

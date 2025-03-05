@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import CartContext from "../Cart/CartContext";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 function Cart() {
     const { cart, removeFromCart } = useContext(CartContext);
@@ -29,7 +29,9 @@ function Cart() {
                     ))}
                 </ul>
                 <div style={{ marginTop: "20px", fontSize: "18px", fontWeight: "bold" }}>
+                  <Typography variant="h6" sx={{ marginTop: 2, fontWeight: "bold" }}>
                     Total: ${totalPrice}
+                  </Typography>
                 </div>
               </>
             )}
