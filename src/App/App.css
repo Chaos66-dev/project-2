@@ -41,6 +41,7 @@
 }
 
 .home-search{
+  grid-column: 1;
   display: flex;
   text-align: left;
   flex-direction: row;
@@ -51,4 +52,15 @@
 
 #search{
   width: 314px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.header-text {
+  grid-column: 2;
+  justify-content: center;
 }

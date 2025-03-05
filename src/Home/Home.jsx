@@ -3,7 +3,7 @@ import ItemsContext from '../Context/ItemsContext'
 import ItemCard from '../ItemCard/ItemCard'
 
 export default function Home({ inputText }){
-    const {itemDetails, setItemDetails} = useContext(ItemsContext)
+    const {itemDetails, } = useContext(ItemsContext)
 
     return(
         <div className='itemCard-wrapper'>

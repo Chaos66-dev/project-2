@@ -6,15 +6,14 @@ import CartContext from "../Cart/CartContext";
 import Home from '../Home/Home'
 import Cart from '../Cart/Cart'
 import ItemDetails from '../ItemDetails/ItemDetails'
-import {Routes, Route} from 'react-router-dom'
-import { useNavigate } from "react-router";
+import {Routes, Route, useNavigate} from 'react-router-dom'
+// import { useNavigate } from "react-router";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button, IconButton, TextField, Badge} from "@mui/material";
 
 function App() {
   const { cart } = useContext(CartContext);
-  const [items, setItems] = useState([])
   const [itemDetails, setItemDetails] = useState([])
   const [loading, setLoading] = useState(true)
   const value = {itemDetails, setItemDetails}
@@ -26,12 +25,13 @@ function App() {
     var lowerCase = input.target.value.toLowerCase();
     var query = lowerCase.replace(" ", "-")
     setInputText(query);
+    navigate('/')
   };
 
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=500&offset=0");
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=100&offset=0");
       const data1 = await res1.json();
 
       // Second API Call: Use data from the first call
@@ -44,7 +44,6 @@ function App() {
       const allItemDetails = await Promise.all(extraDataPromises);
 
       // Set the results from both API calls
-      setItems(data1.results);
       setItemDetails(allItemDetails);
       setLoading(false); // Data has finished loading
     }
@@ -56,14 +55,19 @@ function App() {
 
   return (
     <>
+    <div className='header'>
       <div className='home-search'>
-        <IconButton id='home-button'  aria-label="home" onClick={()=>navigate('/')}>
+        <IconButton id='home-button'  aria-label="home" onClick={()=>{
+          navigate('/')
+          setInputText('')
+          }}>
           <HomeIcon color="primary"/>
         </IconButton>
 
         <TextField
           id="search"
           onChange={inputHandler}
+          value={inputText}
           variant="outlined"
           placeholder="Search..."
           sx={{
@@ -85,6 +89,8 @@ function App() {
           </Badge>
         </IconButton>
       </div>
+      <h1 className="header-text">PokeCommerce</h1>
+    </div>
 
 
     <ItemsContext.Provider value={value}>

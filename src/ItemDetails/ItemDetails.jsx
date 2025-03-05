@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ItemsContext from '../Context/ItemsContext';
 import CartContext from '../Cart/CartContext.jsx'; // Import Cart Context
 import './ItemDetails.css';
-import { separateHyphens } from '../utils.js';
+import { separateHyphens, getEnglishFlavorText } from '../utils.js';
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
@@ -35,8 +35,7 @@ function ItemDetails() {
             <div className='text-wrapper'>
                 {/* Name/description text on right */}
                 <h1 className='description-text'>{separateHyphens(item.name)}</h1>
-                <h3>{item.flavor_text_entries[0].text}</h3>
-
+                <h3>{getEnglishFlavorText(item.flavor_text_entries)}</h3>
                 <div className='item-price-wrapper'>
                     <h3 className='item-cost-text'>${item.cost}</h3>
                 </div>
