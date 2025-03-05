@@ -18,9 +18,13 @@ describe("App", () => {
     });
 
     describe("Test rendering of individual components", () => {
-      test("Renders ItemCards (assuming first one is ultra-ball", async () => {
-        const ultraBall = await screen.findByText("Ultra Ball", {}, { timeout: 8000 });
+      test("Renders ItemCards (assuming first one is ultra-ball)", async () => {
+        const ultraBall = await screen.findByText("Ultra Ball", {}, { timeout: 3000 });
+        const potion = await screen.findByText("Potion", {}, { timeout: 3000 });
+        const rare_candy = await screen.findByText("Rare Candy", {}, { timeout: 3000 });
         expect(ultraBall).toBeInTheDocument();
+        expect(potion).toBeInTheDocument();
+        expect(rare_candy).toBeInTheDocument();
       })
 
       test("Renders the name", () => {
@@ -52,6 +56,10 @@ describe("App", () => {
         const cart = document.getElementById('cart-button')
         expect(cart).toBeInTheDocument();
       })
+
+    })
+
+    describe("Clicking buttons reroutes/does something", () => {
 
     })
   });

@@ -25,6 +25,7 @@ function App() {
     var lowerCase = input.target.value.toLowerCase();
     var query = lowerCase.replace(" ", "-")
     setInputText(query);
+    navigate('/')
   };
 
 
@@ -56,13 +57,17 @@ function App() {
     <>
     <div className='header'>
       <div className='home-search'>
-        <IconButton id='home-button'  aria-label="home" onClick={()=>navigate('/')}>
+        <IconButton id='home-button'  aria-label="home" onClick={()=>{
+          navigate('/')
+          setInputText('')
+          }}>
           <HomeIcon color="primary"/>
         </IconButton>
 
         <TextField
           id="search"
           onChange={inputHandler}
+          value={inputText}
           variant="outlined"
           placeholder="Search..."
           sx={{
