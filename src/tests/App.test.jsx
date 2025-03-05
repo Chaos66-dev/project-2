@@ -1,6 +1,6 @@
 // src/App.test.jsx
 import { describe, beforeEach, test, expect } from 'vitest'
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App/App.jsx";
 import { MemoryRouter as Router } from 'react-router-dom';
 import { CartProvider, CartContext } from '../Cart/CartContext';
@@ -207,6 +207,30 @@ describe("App", () => {
         fireEvent.click(cartButton)
 
         expect(screen.queryAllByText(/4000/).length).toBeGreaterThan(0)
+      })
+
+      test("Clicking remove, empties the cart", async () => {
+        render(
+          <CartProvider>
+            <Router initialEntries={['/cart']}>
+              <App />
+            </Router>
+          </CartProvider>
+        );
+
+        const total_text = await screen.findAllByText(/4000/);
+        expect(total_text.length).toBeGreaterThan(0);
+
+        const remove = await screen.findByRole("button", {name: "Remove"});
+        fireEvent.click(remove)
+
+        await waitFor(() => {
+          expect(screen.queryByText(/4000/)).toBeNull();
+          expect(screen.queryByText('Ultra Ball')).toBeNull();
+          expect(screen.queryByText('Price')).toBeNull();
+          expect(screen.queryByText('Quantity')).toBeNull();
+          expect(screen.queryByText('Remove')).toBeNull();
+        });
       })
 
     })
