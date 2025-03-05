@@ -10,7 +10,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Button, IconButton, TextField} from "@mui/material";
 
 function App() {
-  const [items, setItems] = useState([])
   const [itemDetails, setItemDetails] = useState([])
   const [loading, setLoading] = useState(true)
   const value = {itemDetails, setItemDetails}
@@ -40,7 +39,6 @@ function App() {
       const allItemDetails = await Promise.all(extraDataPromises);
 
       // Set the results from both API calls
-      setItems(data1.results);
       setItemDetails(allItemDetails);
       setLoading(false); // Data has finished loading
     }
