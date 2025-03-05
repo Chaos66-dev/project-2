@@ -84,6 +84,7 @@ function App() {
           </Badge>
         </IconButton>
       </div>
+      <h1 className="header-text">PokeCommerce</h1>
     </div>
 
 

@@ -60,7 +60,7 @@
   align-items: center;
 }
 
-.name {
+.header-text {
   grid-column: 2;
   justify-content: center;
 }
