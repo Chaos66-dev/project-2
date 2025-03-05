@@ -89,7 +89,7 @@ function App() {
           </Badge>
         </IconButton>
       </div>
-      <h1 className="header-text">PokeCommerce</h1>
+      <h1 className="header-text">PokéMart™ Online!</h1>
       {window.scrollTo(0, 0)}
     </div>
 

@@ -1,8 +1,16 @@
 import { Button, TextField, Typography } from "@mui/material";
+import { createTheme, ThemeProvider} from '@mui/material/styles';
 import { useState } from "react";
 import "./CartItem.css"; // Import the external CSS file
 
 function CartItem({ item, removeFromCart, updateQuantity }) {
+    // Create theme for Pokemon Font
+    const pokemonFont = createTheme({
+        typography: {
+            "fontFamily": `PokemonClassic`
+          },
+    })
+
     const [inputValue, setInputValue] = useState(item.quantity);
 
     // Handle manual input change
@@ -37,6 +45,7 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
     };
 
     return (
+        <ThemeProvider theme={pokemonFont}>
         <div className="cart-item">
             {/* Item Image */}
             <img className="cart-item-image" src={item.image} alt={item.name} />
@@ -82,7 +91,9 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
                 Remove
             </Button>
         </div>
+        </ThemeProvider>
     );
+
 }
 
 export default CartItem;
