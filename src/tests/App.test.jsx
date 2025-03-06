@@ -1,9 +1,10 @@
 // src/App.test.jsx
-import { describe, beforeEach, test, expect,vi } from 'vitest'
+import { describe, beforeEach, test, expect, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App/App.jsx";
 import { MemoryRouter as Router } from 'react-router-dom';
 import { CartProvider } from '../Cart/CartContext';
+import * as utils from '../utils.js'
 
 beforeEach(() => {
   // mocking as jsdom does not implement this and it throws errors during testing
@@ -138,6 +139,25 @@ describe("App", () => {
         expect(screen.getByText("Add To Cart")).toBeInTheDocument();
       })
 
+    })
+
+    describe("Test audio button functionality", () => {
+      test("Pressing play calls the play() method", () => {
+        render(
+          <CartProvider>
+            <Router initialEntries={['/']}>
+              <App />
+            </Router>
+          </CartProvider>
+        );
+
+        const spy = vi.spyOn(utils, "togglePlay");
+
+        const music_button = document.getElementById("bgm-button")
+        fireEvent.click(music_button)
+
+        expect(spy).toHaveBeenCalledTimes(1)
+      })
     })
 
     describe("Test search bar functionality", () => {
