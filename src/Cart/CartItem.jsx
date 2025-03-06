@@ -70,7 +70,7 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
                     type="number"
                     value={inputValue}
                     onChange={handleQuantityChange}
-                    inputProps={{ min: 1, style: { textAlign: "center" } }}
+                    // inputProps={{ min: 1, style: { textAlign: "center" } }}
                     className="cart-item-input"
                 />
 
