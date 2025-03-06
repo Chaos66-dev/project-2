@@ -7,14 +7,15 @@ import { separateHyphens, getEnglishFlavorText } from '../utils.js';
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { createTheme, ThemeProvider} from '@mui/material/styles';
+import clickAudio from '../Sounds/click.mp3'
 
 
 function ItemDetails() {
     const { itemDetails } = useContext(ItemsContext);
     const { addToCart } = useContext(CartContext); // Get addToCart function
-
     let { id } = useParams();
     const item = itemDetails[id - 1]; // Adjust for 0-based index
+    const audio = new Audio(clickAudio)
 
      // Create theme for Pokemon Font
     const pokemonFont = createTheme({
@@ -56,7 +57,7 @@ function ItemDetails() {
                     variant="outlined"
                     color="primary"
                     startIcon={<ShoppingCartIcon />}
-                    onClick={handleAddToCart} // Add click handler
+                    onClick={()=>{handleAddToCart(); audio.play()}} // Add click handler
                 >
                     Add To Cart
                 </Button>

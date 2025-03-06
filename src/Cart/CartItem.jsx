@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CartItem.css";
+import clickAudio from '../Sounds/click.mp3'
 
 function CartItem({ item, removeFromCart, updateQuantity }) {
     // Create theme for Pokemon Font
@@ -42,11 +43,12 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
     const goToItemDetails = () => {
       navigate(`/details/${item.id}`);
     };
+    const audio = new Audio(clickAudio)
 
     return (
         <ThemeProvider theme={pokemonFont}>
         <div className="cart-item">
-            <img className="cart-item-image" src={item.image} alt={item.name} onClick={goToItemDetails}/>
+            <img className="cart-item-image" src={item.image} alt={item.name} onClick={()=>{goToItemDetails(); audio.play()}}/>
 
             <div className="cart-item-info">
                 <Typography onClick={goToItemDetails} variant="h6" className="cart-item-name">{item.name} </Typography>
@@ -64,7 +66,7 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
                 </Typography>
             </div>
             <div className="cart-item-controls">
-                <Button variant="outlined" onClick={handleDecrement} disabled={item.quantity <= 1}>-</Button>
+                <Button variant="outlined" onClick={()=>{handleDecrement(); audio.play()}} disabled={item.quantity <= 1}>-</Button>
 
                 <TextField
                     type="number"
@@ -74,10 +76,10 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
                     className="cart-item-input"
                 />
 
-                <Button variant="outlined" onClick={handleIncrement}>+</Button>
+                <Button variant="outlined" onClick={()=>{handleIncrement(); audio.play()}}>+</Button>
             </div>
 
-            <Button variant="outlined" color="secondary" onClick={() => removeFromCart(item.id)} className="cart-item-remove">
+            <Button variant="outlined" color="secondary" onClick={() => {removeFromCart(item.id); audio.play()}} className="cart-item-remove">
                 Remove
             </Button>
         </div>
