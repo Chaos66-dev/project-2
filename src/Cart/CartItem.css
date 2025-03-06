@@ -58,11 +58,11 @@
 .cart-item-controls {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .cart-item-input {
-  width: 60px;
+  width: 80px;
   text-align: center;
   font-size: 1.1rem;
   color: #000;

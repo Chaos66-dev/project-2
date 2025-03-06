@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./CartItem.css";
 import clickAudio from '../Sounds/click.mp3'
 
-
 function CartItem({ item, removeFromCart, updateQuantity }) {
     // Create theme for Pokemon Font
     const pokemonFont = createTheme({
@@ -73,7 +72,7 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
                     type="number"
                     value={inputValue}
                     onChange={handleQuantityChange}
-                    inputProps={{ min: 1, style: { textAlign: "center" } }}
+                    // inputProps={{ min: 1, style: { textAlign: "center" } }}
                     className="cart-item-input"
                 />
 
