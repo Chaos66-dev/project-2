@@ -15,7 +15,7 @@ import pokeBGM from '../Sounds/pokeBGM.mp3'
 import clickAudio from '../Sounds/click.mp3'
 import homeSound from '../Sounds/home.mp3'
 import { togglePlay } from '../utils.js'
-import clickAudio from '../Sounds/click.mp3'
+
 
 function App() {
   const { cart } = useContext(CartContext);
