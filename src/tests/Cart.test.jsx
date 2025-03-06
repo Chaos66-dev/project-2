@@ -1,17 +1,51 @@
-import { describe, beforeEach, test, expect,vi } from 'vitest'
+import { describe, beforeEach, beforeAll, test, expect,vi } from 'vitest'
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App/App.jsx";
 import { MemoryRouter as Router } from 'react-router-dom';
 import { CartProvider } from '../Cart/CartContext';
 
-beforeEach(() => {
-    // mocking as jsdom does not implement this and it throws errors during testing
-    window.scrollTo = vi.fn();
-    vi.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+
+
+beforeAll(async () => {
+  render(
+    <CartProvider>
+      <Router initialEntries={['/cart']}>
+        <App />
+      </Router>
+    </CartProvider>
+  );
+
+  let removeButton = null;
+
+  await waitFor(() => {
+    removeButton = screen.queryByRole("button", { name: "Remove" });
   });
 
+  if (removeButton) {
+    fireEvent.click(removeButton);
+  }
 
-describe("Testing the cart page", () => {
+  // Ensure cart is empty by confirming "Remove" button is not there anymore
+  removeButton = screen.queryByRole("button", { name: "Remove" });
+  expect(removeButton).toBeNull();  // Cart should be empty
+});
+
+  describe("Testing the cart page", () => {
+
+    beforeEach(() => {
+      // mocking as jsdom does not implement this and it throws errors during testing
+      window.scrollTo = vi.fn();
+      vi.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+    });
+
+    test("Cart is empty", async () => {
+      // Wait for the empty cart message to appear if it's rendered asynchronously
+      await waitFor(() => {
+        expect(screen.getByText("Your cart is empty.")).toBeInTheDocument();
+      });
+    });
+
+
     // Integration Test
     test("Items in the cart are displayed on the cart page", async () => {
       render(

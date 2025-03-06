@@ -21,7 +21,7 @@ describe("Testing of itemDetails page", () => {
         </CartProvider>
       );
 
-      const addToCart = await screen.findByRole("button", {name: "Add To Cart"});
+      const addToCart = await screen.findByRole("button", {name: /add to cart/i});
       expect(addToCart).toBeInTheDocument();
 
       fireEvent.click(addToCart)

@@ -56,6 +56,8 @@ function ItemDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
+                    role='button'
+                    id='add-to-cart-button'
                     startIcon={<ShoppingCartIcon />}
                     onClick={()=>{handleAddToCart(); audio.play()}} // Add click handler
                 >
