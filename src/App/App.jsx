@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef} from 'react'
 import './App.css'
 import ItemsContext from '../Context/ItemsContext'
 import CartContext from "../Cart/CartContext";
@@ -8,9 +8,11 @@ import ItemDetails from '../ItemDetails/ItemDetails'
 import {Routes, Route, useNavigate} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import MusicNote from "@mui/icons-material/MusicNote";
 import { Button, IconButton, TextField, Badge} from "@mui/material";
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 import clickAudio from '../Sounds/click.mp3'
+import pokeBGM from '../Sounds/pokeBGM.mp3'
 
 function App() {
   const { cart } = useContext(CartContext);
@@ -20,7 +22,13 @@ function App() {
   let navigate = useNavigate();
   const [inputText, setInputText] = useState("")
   const audio = new Audio(clickAudio)
+  const bgm = new Audio(pokeBGM)
+  bgm.loop = true;
+  const bgmRef = useRef(bgm)
+  
+  const [playing, setPlaying] = useState(false)
 
+  
   let inputHandler = (input) => {
     //convert input text to lower case
     var lowerCase = input.target.value.toLowerCase();
@@ -35,6 +43,16 @@ function App() {
         "fontFamily": `PokemonClassic`
       },
   })
+
+  const play = ()=>{
+    setPlaying(true);
+    bgmRef.current.play()
+  }
+
+  const pause = ()=>{
+    setPlaying(false);
+    bgmRef.current.pause()
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,6 +90,10 @@ function App() {
             audio.play()
             }}>
             <HomeIcon color="primary"/>
+          </IconButton>
+
+          <IconButton id='bgm-button'  aria-label="bgm" onClick={playing? pause : play}>
+            <MusicNote color="primary"/>
           </IconButton>
 
           <TextField
