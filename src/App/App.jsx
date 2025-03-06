@@ -72,7 +72,9 @@ function App() {
   return (
     <>
     <ThemeProvider theme={pokemonFont}>
+
       <div className='header'>
+      <h1 className="header-text">PokéMart™ Online!</h1>
         <div className='home-search'>
           <IconButton id='home-button'  aria-label="home" onClick={()=>{
             navigate('/');
@@ -111,7 +113,9 @@ function App() {
             </Badge>
           </IconButton>
         </div>
-        <h1 className="header-text">PokéMart™ Online!</h1>
+        {"\n"}
+
+
         {window.scrollTo(0, 0)}
       </div>
 
