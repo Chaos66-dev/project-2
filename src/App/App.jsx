@@ -12,6 +12,8 @@ import MusicNote from "@mui/icons-material/MusicNote";
 import { IconButton, TextField, Badge} from "@mui/material";
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 import pokeBGM from '../Sounds/pokeBGM.mp3'
+import clickAudio from '../Sounds/click.mp3'
+import homeSound from '../Sounds/home.mp3'
 import { togglePlay } from '../utils.js'
 
 
@@ -22,7 +24,8 @@ function App() {
   const value = {itemDetails, setItemDetails}
   let navigate = useNavigate();
   const [inputText, setInputText] = useState("")
-  // const audio = new Audio(clickAudio)
+  const homeClick = new Audio(homeSound)
+  const click = new Audio(clickAudio)
   const bgm = new Audio(pokeBGM)
   bgm.loop = true;
   const bgmRef = useRef(bgm)
@@ -81,7 +84,7 @@ function App() {
           <IconButton id='home-button'  aria-label="home" onClick={()=>{
             navigate('/');
             setInputText('');
-            audio.play()
+            homeClick.play()
             }}>
             <HomeIcon color="primary"/>
           </IconButton>
@@ -109,7 +112,7 @@ function App() {
               }
             }}
           />
-          <IconButton id='cart-button' aria-label="cart" onClick={() => {navigate('/cart'); audio.play()}}>
+          <IconButton id='cart-button' aria-label="cart" onClick={() => {navigate('/cart'); click.play()}}>
             <Badge badgeContent={cart.length} color="secondary">
                 <ShoppingCartIcon color="primary" />
             </Badge>
