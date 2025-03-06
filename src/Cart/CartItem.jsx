@@ -3,8 +3,10 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CartItem.css";
-import remSound from '../Sounds/subtract.mp3'
+import remSound from '../Sounds/remove.mp3'
 import clickSound from '../Sounds/click.mp3'
+import addSound from '../Sounds/add.mp3'
+import subSound from '../Sounds/subtract.mp3'
 
 function CartItem({ item, removeFromCart, updateQuantity }) {
     // Create theme for Pokemon Font
@@ -47,6 +49,8 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
 
     const remAudio = new Audio(remSound)
     const clickAudio = new Audio(clickSound)
+    const addAudio = new Audio(addSound)
+    const subAudio = new Audio(subSound)
 
     return (
         <ThemeProvider theme={pokemonFont}>
@@ -69,7 +73,7 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
                 </Typography>
             </div>
             <div className="cart-item-controls">
-                <Button variant="outlined" onClick={()=>{handleDecrement(); clickAudio.play()}} disabled={item.quantity <= 1}>-</Button>
+                <Button variant="outlined" onClick={()=>{handleDecrement(); subAudio.play()}} disabled={item.quantity <= 1}>-</Button>
 
                 <TextField
                     type="number"
@@ -79,7 +83,7 @@ function CartItem({ item, removeFromCart, updateQuantity }) {
                     className="cart-item-input"
                 />
 
-                <Button variant="outlined" onClick={()=>{handleIncrement(); clickAudio.play()}}>+</Button>
+                <Button variant="outlined" onClick={()=>{handleIncrement(); addAudio.play()}}>+</Button>
             </div>
 
             <Button variant="outlined" color="secondary" onClick={() => {removeFromCart(item.id); remAudio.play()}} className="cart-item-remove">
