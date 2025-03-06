@@ -10,6 +10,7 @@ beforeEach(() => {
   // mocking as jsdom does not implement this and it throws errors during testing
   window.scrollTo = vi.fn();
   vi.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+  vi.spyOn(window.HTMLMediaElement.prototype, "pause").mockImplementation(() => Promise.resolve());
 });
 
 
@@ -157,6 +158,9 @@ describe("App", () => {
         fireEvent.click(music_button)
 
         expect(spy).toHaveBeenCalledTimes(1)
+
+        fireEvent.click(music_button)
+        expect(spy).toHaveBeenCalledTimes(2)
       })
     })
 
