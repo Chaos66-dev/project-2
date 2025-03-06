@@ -2,12 +2,21 @@ import { useContext } from "react";
 import CartContext from "../Cart/CartContext";
 import { Typography } from "@mui/material";
 import CartItem from "./CartItem.jsx";
+import { createTheme, ThemeProvider} from '@mui/material/styles';
 
 function Cart() {
+    // Create theme for Pokemon Font
+    const pokemonFont = createTheme({
+        typography: {
+            "fontFamily": `PokemonClassic`
+          },
+    })
+
     const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
     const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     return (
+        <ThemeProvider theme={pokemonFont}>
         <div>
             <h2>Your Cart</h2>
 
@@ -26,6 +35,7 @@ function Cart() {
                 </>
             )}
         </div>
+        </ThemeProvider>
     );
 }
 

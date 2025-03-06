@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import ItemsContext from '../Context/ItemsContext'
@@ -7,10 +6,10 @@ import Home from '../Home/Home'
 import Cart from '../Cart/Cart'
 import ItemDetails from '../ItemDetails/ItemDetails'
 import {Routes, Route, useNavigate} from 'react-router-dom'
-// import { useNavigate } from "react-router";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button, IconButton, TextField, Badge} from "@mui/material";
+import { createTheme, ThemeProvider} from '@mui/material/styles';
 
 function App() {
   const { cart } = useContext(CartContext);
@@ -28,10 +27,17 @@ function App() {
     navigate('/')
   };
 
+  // Create theme for Pokemon Font
+  const pokemonFont = createTheme({
+    typography: {
+        "fontFamily": `PokemonClassic`
+      },
+  })
 
   useEffect(() => {
     const fetchData = async () => {
-      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=1000&offset=0");
+      // change limit when not testing
+      const res1 = await fetch("https://pokeapi.co/api/v2/item?limit=50&offset=0");
       const data1 = await res1.json();
 
       // Second API Call: Use data from the first call
@@ -55,63 +61,62 @@ function App() {
 
   return (
     <>
-    <div className='header'>
-      <div className='home-search'>
-        <IconButton id='home-button'  aria-label="home" onClick={()=>{
-          navigate('/')
-          setInputText('')
-          }}>
-          <HomeIcon color="primary"/>
-        </IconButton>
+    <ThemeProvider theme={pokemonFont}>
+      <div className='header'>
+        <div className='home-search'>
+          <IconButton id='home-button'  aria-label="home" onClick={()=>{
+            navigate('/')
+            setInputText('')
+            }}>
+            <HomeIcon color="primary"/>
+          </IconButton>
 
-        <TextField
-          id="search"
-          onChange={inputHandler}
-          value={inputText}
-          variant="outlined"
-          placeholder="Search..."
-          sx={{
-            backgroundColor: "white",
-            borderRadius: 1,
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "gray",
-              },
-              "&:hover fieldset": {
-                borderColor: "black",
-              },
-            }
-          }}
-        />
-        <IconButton id='cart-button' aria-label="cart" onClick={() => navigate('/cart')}>
-          <Badge badgeContent={cart.length} color="secondary">
-              <ShoppingCartIcon color="primary" />
-          </Badge>
-        </IconButton>
+          <TextField
+            id="search"
+            onChange={inputHandler}
+            value={inputText}
+            variant="outlined"
+            placeholder="Search..."
+            sx={{
+              backgroundColor: "white",
+              borderRadius: 1,
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "gray",
+                },
+                "&:hover fieldset": {
+                  borderColor: "black",
+                },
+              }
+            }}
+          />
+          <IconButton id='cart-button' aria-label="cart" onClick={() => navigate('/cart')}>
+            <Badge badgeContent={cart.length} color="secondary">
+                <ShoppingCartIcon color="primary" />
+            </Badge>
+          </IconButton>
+        </div>
+        <h1 className="header-text">PokéMart™ Online!</h1>
+        {window.scrollTo(0, 0)}
       </div>
-      <h1 className="header-text">PokeCommerce</h1>
-      {window.scrollTo(0, 0)}
-    </div>
 
 
-    <ItemsContext.Provider value={value}>
-      {loading ? (
-        <div>loading</div>
+      <ItemsContext.Provider value={value}>
+        {loading ? (
+          <div>loading</div>
 
-      ) : (
-          <Routes>
+        ) : (
+            <Routes>
 
-            <Route path='/' element= {<Home inputText={inputText}/>}/>
-            <Route path='/cart' element= {<Cart/>}/>
-            <Route path='/details/:id' element= {<ItemDetails />}/>
+              <Route path='/' element= {<Home inputText={inputText}/>}/>
+              <Route path='/cart' element= {<Cart/>}/>
+              <Route path='/details/:id' element= {<ItemDetails />}/>
 
-
-          </Routes>
-        )
-      }
-    </ItemsContext.Provider>
-
-
+            </Routes>
+          )
+        }
+      </ItemsContext.Provider>
+    </ThemeProvider>
     </>
   )
 }

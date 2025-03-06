@@ -6,6 +6,8 @@ import './ItemDetails.css';
 import { separateHyphens, getEnglishFlavorText } from '../utils.js';
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { createTheme, ThemeProvider} from '@mui/material/styles';
+
 
 function ItemDetails() {
     const { itemDetails } = useContext(ItemsContext);
@@ -13,6 +15,13 @@ function ItemDetails() {
 
     let { id } = useParams();
     const item = itemDetails[id - 1]; // Adjust for 0-based index
+
+     // Create theme for Pokemon Font
+    const pokemonFont = createTheme({
+        typography: {
+                 "fontFamily": `PokemonClassic`
+            },
+        })
 
     // Function to handle adding an item to the cart
     const handleAddToCart = () => {
@@ -26,6 +35,7 @@ function ItemDetails() {
     };
 
     return (
+        <ThemeProvider theme={pokemonFont}>
         <div className='itemDetails-container'>
             {/* Image on left */}
             <div className='img-container'>
@@ -36,6 +46,7 @@ function ItemDetails() {
                 {/* Name/description text on right */}
                 <h1 className='description-text'>{separateHyphens(item.name)}</h1>
                 <h3>{getEnglishFlavorText(item.flavor_text_entries)}</h3>
+
                 <div className='item-price-wrapper'>
                     <h3 className='item-cost-text'>${item.cost}</h3>
                 </div>
@@ -51,6 +62,7 @@ function ItemDetails() {
                 </Button>
             </div>
         </div>
+        </ThemeProvider>
     );
 }
 
