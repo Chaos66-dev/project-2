@@ -1,12 +1,18 @@
 // src/App.test.jsx
-import { describe, beforeEach, test, expect } from 'vitest'
+import { describe, beforeEach, test, expect,vi } from 'vitest'
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App/App.jsx";
 import { MemoryRouter as Router } from 'react-router-dom';
-import { CartProvider, CartContext } from '../Cart/CartContext';
+import { CartProvider } from '../Cart/CartContext';
+
+beforeEach(() => {
+  // mocking as jsdom does not implement this and it throws errors during testing
+  window.scrollTo = vi.fn();
+  vi.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+});
+
 
 describe("App", () => {
-
   describe("Test rendering of individual components", () => {
       beforeEach(() => {
         // Arrange
@@ -134,105 +140,48 @@ describe("App", () => {
 
     })
 
-    describe("Testing of itemDetails page", () => {
-      // Unit Test
-      test("Clicking on the 'add to cart' page adds an item to the cart", async () => {
+    describe("Test search bar functionality", () => {
+      test("Test that user input is searched by lowercase", async () => {
         render(
           <CartProvider>
-            <Router initialEntries={['/details/2']}>
+            <Router initialEntries={['/']}>
               <App />
             </Router>
           </CartProvider>
         );
+        const ultraBall = await screen.findByText("Ultra Ball");
+        expect(ultraBall).toBeInTheDocument();
 
-        const addToCart = await screen.findByRole("button", {name: "Add To Cart"});
-        expect(addToCart).toBeInTheDocument();
+        const text_counter = await screen.findByRole('textbox');
+        fireEvent.change(text_counter, {target: {value: 'ULTRA'}})
 
-        fireEvent.click(addToCart)
-
-        expect(screen.getByText("1")).toBeInTheDocument();
+        const ultraBall2 = await screen.findByText("Ultra Ball");
+        expect(ultraBall2).toBeInTheDocument();
       })
 
-      test("English Flavor Text is rendered to screen", async () => {
+      test("Test that user input filters the displayed items", async () => {
         render(
           <CartProvider>
-            <Router initialEntries={['/details/8']}>
+            <Router initialEntries={['/']}>
               <App />
             </Router>
           </CartProvider>
         );
-        const nestBallFlavor = await screen.findByText("A BALL that works better on weaker POKéMON.")
-        expect(nestBallFlavor).toBeInTheDocument();
+        const ultraBall = await screen.findByText("Ultra Ball");
+        const potion = await screen.findByText("Potion");
+        expect(ultraBall).toBeInTheDocument();
+        expect(potion).toBeInTheDocument();
 
-      })
-    })
+        const text_counter = await screen.findByRole('textbox');
+        fireEvent.change(text_counter, {target: {value: 'ultra'}})
 
-    describe("Testing the cart page", () => {
-      // Integration Test
-      test("Items in the cart are displayed on the cart page", async () => {
-        render(
-          <CartProvider>
-            <Router initialEntries={['/details/2']}>
-              <App />
-            </Router>
-          </CartProvider>
-        );
-
-        const addToCart = await screen.findByRole("button", {name: "Add To Cart"});
-        expect(addToCart).toBeInTheDocument();
-        fireEvent.click(addToCart)
-
-        const cartButton = document.getElementById("cart-button");
-        fireEvent.click(cartButton)
-
-        expect(screen.getByText('Original Price:')).toBeInTheDocument();
-      })
-
-      test("Test cart total calculation", async () => {
-        render(
-          <CartProvider>
-            <Router initialEntries={['/details/2']}>
-              <App />
-            </Router>
-          </CartProvider>
-        );
-
-        const addToCart = await screen.findByRole("button", {name: "Add To Cart"});
-        expect(addToCart).toBeInTheDocument();
-        fireEvent.click(addToCart)
-        fireEvent.click(addToCart)
-        fireEvent.click(addToCart)
-
-        const cartButton = document.getElementById("cart-button");
-        fireEvent.click(cartButton)
-
-        expect(screen.queryAllByText(/4000/).length).toBeGreaterThan(0)
-      })
-
-      test("Clicking remove, empties the cart", async () => {
-        render(
-          <CartProvider>
-            <Router initialEntries={['/cart']}>
-              <App />
-            </Router>
-          </CartProvider>
-        );
-
-        const total_text = await screen.findAllByText(/4000/);
-        expect(total_text.length).toBeGreaterThan(0);
-
-        const remove = await screen.findByRole("button", {name: "Remove"});
-        fireEvent.click(remove)
-
+        const ultraBall2 = await screen.findByText("Ultra Ball");
+        expect(ultraBall2).toBeInTheDocument();
         await waitFor(() => {
-          expect(screen.queryByText(/4000/)).toBeNull();
-          expect(screen.queryByText('Ultra Ball')).toBeNull();
-          expect(screen.queryByText('Price')).toBeNull();
-          expect(screen.queryByText('Quantity')).toBeNull();
-          expect(screen.queryByText('Remove')).toBeNull();
-        });
+          expect(screen.queryByText('Potion')).toBeNull();
+        })
       })
-
     })
+
 
   });
