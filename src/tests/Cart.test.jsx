@@ -1,4 +1,4 @@
-import { describe, beforeEach, beforeAll, test, expect,vi } from 'vitest'
+import { describe, beforeAll, test, expect, vi } from 'vitest'
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App/App.jsx";
 import { MemoryRouter as Router } from 'react-router-dom';
@@ -7,6 +7,10 @@ import { CartProvider } from '../Cart/CartContext';
 
 
 beforeAll(async () => {
+  window.scrollTo = vi.fn();
+  vi.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+  vi.spyOn(window.HTMLMediaElement.prototype, "pause").mockImplementation(() => Promise.resolve());
+
   render(
     <CartProvider>
       <Router initialEntries={['/cart']}>
@@ -14,6 +18,7 @@ beforeAll(async () => {
       </Router>
     </CartProvider>
   );
+
 
   let removeButton = null;
 
@@ -31,12 +36,6 @@ beforeAll(async () => {
 });
 
   describe("Testing the cart page", () => {
-
-    beforeEach(() => {
-      // mocking as jsdom does not implement this and it throws errors during testing
-      window.scrollTo = vi.fn();
-      vi.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
-    });
 
     test("Cart is empty", async () => {
       // Wait for the empty cart message to appear if it's rendered asynchronously
