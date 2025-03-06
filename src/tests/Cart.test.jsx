@@ -1,8 +1,15 @@
-import { describe, test, expect } from 'vitest'
+import { describe, beforeEach, test, expect,vi } from 'vitest'
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App/App.jsx";
 import { MemoryRouter as Router } from 'react-router-dom';
 import { CartProvider } from '../Cart/CartContext';
+
+beforeEach(() => {
+    // mocking as jsdom does not implement this and it throws errors during testing
+    window.scrollTo = vi.fn();
+    vi.spyOn(window.HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+  });
+
 
 describe("Testing the cart page", () => {
     // Integration Test
