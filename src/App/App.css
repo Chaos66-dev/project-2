@@ -1,6 +1,7 @@
 #root {
   margin: auto;
   padding: 2rem;
+  max-width: 1280px;
 }
 
 .itemCard-wrapper {
@@ -30,27 +31,29 @@
 }
 
 .home-search{
-  grid-column: 1;
+  grid-column: 2;
   display: flex;
   text-align: left;
   flex-direction: row;
   gap: 20px;
   margin-bottom: 1%;
   align-items: center;
-  margin-left: 7%;
+  grid-column: 2;
+  justify-content: center;
 }
 
 #search{
-  width: 314px;
+  max-width: 800px;
 }
 
 .header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.3fr 1fr 0.3fr;
   align-items: center;
 }
 
 .header-text {
+  margin-left: 15px; /* <----- Fix for slight centering offset*/
   grid-column: 2;
   justify-content: center;
 }
