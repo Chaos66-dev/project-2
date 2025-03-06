@@ -15,7 +15,7 @@ import pokeBGM from '../Sounds/pokeBGM.mp3'
 import clickAudio from '../Sounds/click.mp3'
 import homeSound from '../Sounds/home.mp3'
 import { togglePlay } from '../utils.js'
-
+import clickAudio from '../Sounds/click.mp3'
 
 function App() {
   const { cart } = useContext(CartContext);
@@ -31,7 +31,6 @@ function App() {
   const bgmRef = useRef(bgm)
 
   const [playing, setPlaying] = useState(false);
-  const [audio] = useState(new Audio("bgm.mp3"));
 
   let inputHandler = (input) => {
     //convert input text to lower case
@@ -71,7 +70,6 @@ function App() {
 
     fetchData()
   }, [])
-
 
 
   return (
