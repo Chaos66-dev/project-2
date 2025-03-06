@@ -27,3 +27,14 @@ export function getEnglishFlavorText(flavor_text_array) {
     }
     return 'No english flavor text'
 }
+
+export function togglePlay(audio, setPlaying, playing) {
+    if (playing) {
+      audio.current.pause();
+
+    } else {
+      audio.current.play();
+
+    }
+    setPlaying(!playing);
+  }

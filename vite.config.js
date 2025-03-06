@@ -11,8 +11,8 @@ export default defineConfig({
     setupFiles: "./src/tests/setupTests.js",
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html'],
-      exclude: ['node_modules/', 'test/'],
+      reporter: ['text'],
+      exclude: ['node_modules/', 'test/', '*.config.js'],
     },
   },
 })
