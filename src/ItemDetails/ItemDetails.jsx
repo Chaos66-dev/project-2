@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 function ItemDetails() {
     const { itemDetails } = useContext(ItemsContext);
     const { addToCart } = useContext(CartContext); // Get addToCart function
-
     let { id } = useParams();
     const item = itemDetails[id - 1]; // Adjust for 0-based index
 

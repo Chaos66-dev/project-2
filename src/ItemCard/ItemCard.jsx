@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { separateHyphens } from '../utils.js'
 import "./ItemCard.css"
+import clickAudio from '../Sounds/click.mp3'
 
 function ItemCard ({prop}) {
+    const audio = new Audio(clickAudio)
+
     if(prop.cost > 0 && prop.sprites.default !== null){
         return (
             <Link to={`/details/${prop.id}`}>
-                <div className='card-container'>
+                <div className='card-container' onClick={()=>audio.play()}>
                     <div className='item-title'>
                     {separateHyphens(prop.name)}
                     </div>

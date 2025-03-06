@@ -10,6 +10,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Button, IconButton, TextField, Badge} from "@mui/material";
 import { createTheme, ThemeProvider} from '@mui/material/styles';
+import clickAudio from '../Sounds/click.mp3'
 
 function App() {
   const { cart } = useContext(CartContext);
@@ -18,6 +19,7 @@ function App() {
   const value = {itemDetails, setItemDetails}
   let navigate = useNavigate();
   const [inputText, setInputText] = useState("")
+  const audio = new Audio(clickAudio)
 
   let inputHandler = (input) => {
     //convert input text to lower case
@@ -65,8 +67,9 @@ function App() {
       <div className='header'>
         <div className='home-search'>
           <IconButton id='home-button'  aria-label="home" onClick={()=>{
-            navigate('/')
-            setInputText('')
+            navigate('/');
+            setInputText('');
+            audio.play()
             }}>
             <HomeIcon color="primary"/>
           </IconButton>
@@ -90,7 +93,7 @@ function App() {
               }
             }}
           />
-          <IconButton id='cart-button' aria-label="cart" onClick={() => navigate('/cart')}>
+          <IconButton id='cart-button' aria-label="cart" onClick={() => {navigate('/cart'); audio.play()}}>
             <Badge badgeContent={cart.length} color="secondary">
                 <ShoppingCartIcon color="primary" />
             </Badge>
