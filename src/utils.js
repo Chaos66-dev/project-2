@@ -37,4 +37,4 @@ export function togglePlay(audio, setPlaying, playing) {
 
     }
     setPlaying(!playing);
-  }
+}
