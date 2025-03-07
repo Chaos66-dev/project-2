@@ -13,6 +13,7 @@
 /* Ensure all text inside inherits the font */
 .cart-item * {
   font-family: inherit; /* Make sure all child elements use the same font */
+  text-shadow: 0px 0px rgba(0, 0, 0, 0);
 }
 
 .cart-item-image {

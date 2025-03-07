@@ -14,7 +14,7 @@
     min-height: calc(100vh - 300px);
     background: url('../assets/pokemart-bg.jpg') no-repeat center center/cover;
     color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
 }
 
 /* Digital PokéMart Image Box */
