@@ -7,7 +7,6 @@ import { separateHyphens, getEnglishFlavorText } from '../utils.js';
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { createTheme, ThemeProvider} from '@mui/material/styles';
-import clickAudio from '../Sounds/click.mp3'
 import cartSound from '../Sounds/cart.mp3'
 
 
@@ -58,7 +57,7 @@ function ItemDetails() {
                     variant="outlined"
                     color="primary"
                     role='button'
-                    id='add-to-cart-button'
+                    data-testid='add-to-cart-button'
                     startIcon={<ShoppingCartIcon />}
                     onClick={()=>{handleAddToCart(); cartAudio.play()}} // Add click handler
                 >
