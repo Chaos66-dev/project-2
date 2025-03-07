@@ -57,3 +57,17 @@
   grid-column: 2;
   justify-content: center;
 }
+
+#home-button{
+  background-color: rgb(255, 255, 255);
+
+}
+
+#bgm-button{
+  background-color: rgb(255, 255, 255);
+
+}
+#cart-button{
+  background-color: rgb(255, 255, 255);
+
+}
