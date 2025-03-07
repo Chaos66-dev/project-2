@@ -9,6 +9,10 @@ This is the best eCommerce application for our Pokemon Trainers and all who inha
 ## 📦 About the Application
 PokéMart Online is an eCommerce web application inspired by the Pokémon world, designed to function like an Amazon-style marketplace for Pokémon trainers. This platform allows users to browse and buy in-game-inspired items such as Poké Balls, Potions, TMs, Evolution Stones, and more.
 
+Kanban Board: https://www.notion.so/1ab8fe39af10809898a8f80e5cbe0ab4?v=1ab8fe39af10819fa2e5000cfb5bbfc5&pvs=4
+
+There you can find the wireframes, problem statement, and user stories.
+
 ## 🛠️ Installation
 Clone the repo:
    ```bash
