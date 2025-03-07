@@ -1,5 +1,5 @@
 
-import { capitalizeFirst, separateHyphens, getEnglishFlavorText } from '../utils.js'
+import { capitalizeFirst, separateHyphens, getEnglishFlavorText, extractFields } from '../utils.js'
 import { describe, test, expect } from 'vitest'
 
 
@@ -95,6 +95,22 @@ describe('Testing helper functions in utils', () => {
 
         expect(en_rotoEncounter_flav).toEqual("No english flavor text")
       })
+    })
+
+    describe("Extract Fields", () => {
+      test("Test with many keys", () => {
+        let keys_to_extract = ['id', 'name', 'cost', 'flavor_text_entries', 'sprites']
+        let data = {'cost': 200,
+                      "flavor_text_entries": ['test'],
+                      'id': '2',
+                      'sprites': 'test',
+                      'held_by_pokemon': []}
+
+        const result = extractFields(data, keys_to_extract)
+        expect(result.held_by_pokemon).toEqual(undefined);
+        expect(result.id).toEqual('2')
+      })
+
     })
 
   })

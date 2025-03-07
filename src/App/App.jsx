@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 import pokeBGM from '../Sounds/pokeBGM.mp3'
 import clickAudio from '../Sounds/click.mp3'
 import homeSound from '../Sounds/home.mp3'
-import { togglePlay } from '../utils.js'
+import { togglePlay, extractFields } from '../utils.js'
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
   const bgm = new Audio(pokeBGM)
   bgm.loop = true;
   const bgmRef = useRef(bgm)
+  const keys_to_extract  = ['id', 'name', 'cost', 'flavor_text_entries', 'sprites']
 
   const [playing, setPlaying] = useState(false);
 
@@ -47,7 +48,6 @@ function App() {
       },
   })
 
-
   useEffect(() => {
     const fetchData = async () => {
       // change limit when not testing
@@ -58,7 +58,8 @@ function App() {
       const extraDataPromises = data1.results.map(async (item) => {
         const res = await fetch(item.url);
         const data2 = await res.json();
-        return data2; // Return the detailed data for this Pokémon
+        const extractedData = extractFields(data2, keys_to_extract);
+        return extractedData; // Return the detailed data for this Pokémon
       });
 
       const allItemDetails = await Promise.all(extraDataPromises);

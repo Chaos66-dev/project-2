@@ -38,3 +38,12 @@ export function togglePlay(audio, setPlaying, playing) {
     }
     setPlaying(!playing);
 }
+
+export function extractFields(obj, keys) {
+    return keys.reduce((newObj, key) => {
+        if (key in obj) {
+        newObj[key] = obj[key]; // Preserve key-value pair
+        }
+        return newObj;
+    }, {});
+}
